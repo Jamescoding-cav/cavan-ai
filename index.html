@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cavan AI — Making AI work for real businesses</title>
+<meta name="description" content="I help local businesses save hours every week using AI — replying to reviews, writing social posts, and handling customer enquiries. Free chat, no jargon.">
+
+<!-- ============================================================
+     CAVAN AI — single-file website
+     EASY EDITS:
+     • Phone number: search for 07484257125 and replace everywhere
+     • Email: search for cavanai.business@gmail.com and replace everywhere
+       (when james@cavanai.co.uk forwarding is set up, swap it in)
+     • Prices: each is in its own service card below, clearly labelled
+     • Your photo: search for "PHOTO GOES HERE" and follow the note
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#23201b;          /* near-black warm text */
+    --ink-soft:#5c554a;     /* softer body text */
+    --cream:#faf6ef;        /* warm page background */
+    --card:#ffffff;         /* card surfaces */
+    --teal:#0f6e5c;         /* trustworthy deep green-teal accent */
+    --teal-dark:#0a4f43;
+    --teal-tint:#e7f1ee;    /* soft teal section bg */
+    --amber:#e8a33d;        /* warm highlight */
+    --line:#e8e0d4;         /* hairline borders */
+    --radius:16px;
+    --shadow:0 2px 4px rgba(35,32,27,0.04), 0 8px 24px rgba(35,32,27,0.06);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.65;
+    font-size:17px;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400;line-height:1.12;letter-spacing:-0.01em}
+  h1{font-size:clamp(2.4rem,6vw,4rem)}
+  h2{font-size:clamp(1.9rem,4.5vw,2.9rem)}
+  h3{font-size:1.3rem}
+  p{color:var(--ink-soft)}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  section{padding:90px 0}
+  @media(max-width:640px){section{padding:60px 0}body{font-size:16px}}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:1.02rem;
+    padding:15px 28px;border-radius:50px;border:2px solid transparent;
+    cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+    line-height:1;
+  }
+  .btn-primary{background:var(--teal);color:#fff;box-shadow:0 6px 18px rgba(15,110,92,0.28)}
+  .btn-primary:hover{background:var(--teal-dark);transform:translateY(-2px);box-shadow:0 10px 24px rgba(15,110,92,0.34)}
+  .btn-ghost{background:transparent;color:var(--teal);border-color:var(--teal)}
+  .btn-ghost:hover{background:var(--teal-tint);transform:translateY(-2px)}
+  .btn-white{background:#fff;color:var(--teal)}
+  .btn-white:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,0.12)}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,246,239,0.85);backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s;
+  }
+  nav.scrolled{border-color:var(--line);box-shadow:0 2px 12px rgba(35,32,27,0.05)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--ink);display:flex;align-items:center;gap:9px}
+  .logo .spark{color:var(--teal)}
+  .logo b{color:var(--teal);font-family:inherit;font-weight:400}
+  .nav-cta{font-size:.95rem;padding:11px 22px}
+  @media(max-width:520px){.nav-cta{padding:10px 18px;font-size:.9rem}.logo{font-size:1.3rem}}
+
+  /* ---------- hero ---------- */
+  .hero{padding:70px 0 80px;position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:50px;align-items:center}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:36px}}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--teal-tint);color:var(--teal-dark);
+    font-size:.85rem;font-weight:600;padding:7px 15px;border-radius:50px;margin-bottom:22px;
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);display:inline-block}
+  .hero h1{margin-bottom:8px}
+  .hero .typeline{
+    font-family:'DM Serif Display',serif;
+    font-size:clamp(1.4rem,3.4vw,2.1rem);color:var(--teal);
+    min-height:1.4em;margin:6px 0 24px;display:block;
+  }
+  .cursor{display:inline-block;width:3px;height:1em;background:var(--teal);
+    margin-left:2px;vertical-align:-0.12em;animation:blink 1s step-end infinite}
+  @keyframes blink{50%{opacity:0}}
+  .hero-sub{font-size:1.15rem;max-width:30rem;margin-bottom:30px}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-trust{margin-top:26px;display:flex;align-items:center;gap:10px;font-size:.95rem;color:var(--ink-soft)}
+  .hero-trust svg{flex-shrink:0}
+
+  /* portrait card */
+  .portrait-card{
+    background:var(--card);border-radius:24px;padding:14px;box-shadow:var(--shadow);
+    border:1px solid var(--line);transform:rotate(1.4deg);
+  }
+  .portrait{
+    width:100%;aspect-ratio:4/5;border-radius:16px;object-fit:cover;display:block;
+    background:linear-gradient(150deg,var(--teal-tint),#d4e6e0);
+  }
+  .portrait-ph{
+    width:100%;aspect-ratio:4/5;border-radius:16px;
+    background:linear-gradient(150deg,var(--teal-tint),#d4e6e0);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    color:var(--teal-dark);text-align:center;padding:24px;gap:10px;
+  }
+  .portrait-name{margin-top:14px;text-align:center;padding-bottom:6px}
+  .portrait-name strong{font-family:'DM Serif Display',serif;font-size:1.25rem;font-weight:400;display:block}
+  .portrait-name span{font-size:.9rem;color:var(--ink-soft)}
+
+  /* ---------- generic section heads ---------- */
+  .sec-head{max-width:38rem;margin-bottom:46px}
+  .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .sec-head .kicker{color:var(--teal);font-weight:600;font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px}
+  .sec-head p{font-size:1.12rem;margin-top:14px}
+
+  /* ---------- what is AI ---------- */
+  .plain{background:var(--teal-tint)}
+  .plain-inner{max-width:46rem;margin:0 auto;text-align:center}
+  .plain-inner h2{margin-bottom:20px}
+  .plain-big{font-size:1.3rem;color:var(--ink);line-height:1.6}
+  .plain-big b{color:var(--teal-dark);font-weight:600}
+  .plain-foot{margin-top:24px;font-size:1.05rem}
+
+  /* ---------- services ---------- */
+  .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  @media(max-width:760px){.svc-grid{grid-template-columns:1fr}}
+  .svc{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:30px 28px;display:flex;flex-direction:column;gap:14px;
+    transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+  }
+  .svc:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#d8cdba}
+  .svc-icon{
+    width:48px;height:48px;border-radius:12px;background:var(--teal-tint);
+    display:flex;align-items:center;justify-content:center;color:var(--teal);
+  }
+  .svc h3{color:var(--ink)}
+  .svc-what{font-size:.98rem;flex-grow:1}
+  .svc-price{display:flex;align-items:baseline;gap:6px;margin-top:4px}
+  .svc-price .num{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--teal-dark)}
+  .svc-price .per{font-size:.92rem;color:var(--ink-soft)}
+  .svc-link{
+    color:var(--teal);font-weight:600;font-size:.97rem;display:inline-flex;align-items:center;gap:6px;
+    margin-top:2px;transition:gap .18s ease;
+  }
+  .svc-link:hover{gap:11px}
+  .svc.feature{border-color:var(--teal);border-width:2px;position:relative}
+  .badge-pop{
+    position:absolute;top:-12px;left:28px;background:var(--amber);color:#3d2a08;
+    font-size:.78rem;font-weight:700;padding:5px 13px;border-radius:50px;letter-spacing:.02em;
+  }
+
+  /* ---------- how it works ---------- */
+  .steps{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:step}
+  @media(max-width:760px){.steps-grid{grid-template-columns:1fr;gap:18px}}
+  .step{position:relative;padding-top:8px}
+  .step-num{
+    width:42px;height:42px;border-radius:50%;background:var(--teal);color:#fff;
+    font-family:'DM Serif Display',serif;font-size:1.3rem;
+    display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+  }
+  .step h3{font-family:'Inter',sans-serif;font-size:1.08rem;font-weight:700;color:var(--ink);margin-bottom:7px}
+  .step p{font-size:.97rem}
+
+  /* ---------- why ---------- */
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  @media(max-width:760px){.why-grid{grid-template-columns:1fr;gap:30px}}
+  .why-points{list-style:none;display:flex;flex-direction:column;gap:18px;margin-top:8px}
+  .why-points li{display:flex;gap:14px;align-items:flex-start}
+  .why-points .tick{
+    flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--teal-tint);
+    display:flex;align-items:center;justify-content:center;color:var(--teal);margin-top:2px;
+  }
+  .why-points b{color:var(--ink);font-weight:600}
+  .why-points span{color:var(--ink-soft);font-size:.99rem}
+
+  /* ---------- guarantee ---------- */
+  .guarantee{background:var(--teal);color:#fff;text-align:center}
+  .guarantee-inner{max-width:42rem;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:18px}
+  .guarantee .seal{
+    width:78px;height:78px;border-radius:50%;background:rgba(255,255,255,0.14);
+    display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,0.4);
+  }
+  .guarantee h2{color:#fff}
+  .guarantee p{color:rgba(255,255,255,0.92);font-size:1.18rem;line-height:1.6}
+  .guarantee .small{font-size:1rem;color:rgba(255,255,255,0.78)}
+
+  /* ---------- testimonials ---------- */
+  .tg{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:760px){.tg{grid-template-columns:1fr}}
+  .t-card{
+    background:var(--card);border:1px dashed var(--line);border-radius:var(--radius);
+    padding:28px 24px;display:flex;flex-direction:column;gap:16px;min-height:180px;
+  }
+  .t-stars{color:var(--amber);font-size:1.1rem;letter-spacing:2px}
+  .t-quote{color:var(--ink-soft);font-style:italic;flex-grow:1}
+  .t-soon{
+    display:inline-flex;align-items:center;gap:7px;font-size:.86rem;font-weight:600;
+    color:var(--teal);background:var(--teal-tint);padding:5px 12px;border-radius:50px;align-self:flex-start;
+  }
+  .t-name{font-weight:600;color:var(--ink);font-size:.95rem}
+
+  /* ---------- contact ---------- */
+  .contact{background:#fff;border-top:1px solid var(--line)}
+  .contact-inner{max-width:40rem;margin:0 auto;text-align:center}
+  .contact h2{margin-bottom:14px}
+  .contact .lead{font-size:1.15rem;margin-bottom:34px}
+  .contact-methods{display:flex;flex-direction:column;gap:16px;max-width:30rem;margin:0 auto}
+  .cm{
+    display:flex;align-items:center;gap:18px;padding:20px 24px;
+    border:1px solid var(--line);border-radius:var(--radius);background:var(--cream);
+    transition:transform .18s ease,box-shadow .18s ease,border-color .18s;text-align:left;
+  }
+  .cm:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:#d8cdba}
+  .cm-ic{
+    width:50px;height:50px;border-radius:12px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;color:#fff;
+  }
+  .cm-ic.phone{background:var(--teal)}
+  .cm-ic.wa{background:#25D366}
+  .cm-ic.mail{background:var(--amber)}
+  .cm-label{font-size:.85rem;color:var(--ink-soft);margin-bottom:1px}
+  .cm-value{font-size:1.15rem;font-weight:600;color:var(--ink)}
+  .contact-foot{margin-top:28px;font-size:1rem}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink);color:#cfc7ba;padding:46px 0;text-align:center}
+  footer .logo{color:#fff;justify-content:center;margin-bottom:16px}
+  footer .logo b{color:#7bcdbd}
+  footer .f-line{font-family:'DM Serif Display',serif;font-size:1.1rem;color:#fff;margin-bottom:16px}
+  footer .f-contact{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;font-size:.95rem;margin-bottom:14px}
+  footer .f-contact a:hover{color:#fff}
+  footer .f-small{font-size:.82rem;color:#8a8478}
+
+  /* ---------- scroll reveal ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    .cursor{animation:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo"><span class="spark">✦</span> Cavan<b>AI</b></a>
+    <a href="#contact" class="btn btn-primary nav-cta">Get in touch</a>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> Friendly AI help for local businesses</span>
+      <h1>Save hours every week.</h1>
+      <span class="typeline"><span id="type"></span><span class="cursor" aria-hidden="true"></span></span>
+      <p class="hero-sub">I'm James — I help local businesses use AI to take care of the time-consuming jobs, so you can get back to running your business. No jargon. No tech headaches. Just a hand from someone local who'll actually show up.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">Book your free chat</a>
+        <a href="#services" class="btn btn-ghost">See what I do</a>
+      </div>
+      <div class="hero-trust">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V5l-8-3z" fill="#0f6e5c" opacity="0.18"/><path d="M9 12l2 2 4-4" stroke="#0f6e5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        7-day money back guarantee — no awkward conversations.
+      </div>
+    </div>
+    <div>
+      <div class="portrait-card reveal">
+        <!-- ============ PHOTO GOES HERE ============
+             To add your photo:
+             1. Put your photo file (e.g. james.jpg) in the SAME folder as this file
+             2. Delete the <div class="portrait-ph">...</div> block just below
+             3. Un-comment the <img> line below it and set src="james.jpg"
+        -->
+        <div class="portrait-ph">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#0a4f43" stroke-width="1.6"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="#0a4f43" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <strong style="font-family:'DM Serif Display',serif;font-size:1.1rem">Your photo here</strong>
+          <span style="font-size:.86rem;opacity:.8">A friendly face goes a long way</span>
+        </div>
+        <!-- <img class="portrait" src="james.jpg" alt="James Cavan, founder of Cavan AI"> -->
+        <div class="portrait-name">
+          <strong>James Cavan</strong>
+          <span>Founder, Cavan AI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== WHAT IS AI ===================== -->
+<section class="plain reveal">
+  <div class="wrap plain-inner">
+    <h2>"But I don't know the first thing about AI"</h2>
+    <p class="plain-big">That's completely fine — you don't need to. Most businesses lose <b>hours every single week</b> on jobs a computer can now do in seconds: replying to reviews, writing social media posts, answering the same customer questions over and over.</p>
+    <p class="plain-foot"><b style="color:var(--teal-dark)">That's all AI really is</b> — a tool that handles the boring, repetitive stuff. My job is to set it up for you and show you how it works, in plain English.</p>
+  </div>
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kicker">What I do</div>
+      <h2>Pick what helps your business most</h2>
+      <p>Honest, upfront prices. No hidden costs, no monthly tie-ins unless you want them. Not sure what you need? That's what the free chat is for.</p>
+    </div>
+
+    <div class="svc-grid">
+
+      <!-- SERVICE 1 -->
+      <div class="svc reveal">
+        <div class="svc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M11 2l2.4 5.3 5.8.5-4.4 3.8 1.3 5.7L11 20l-5.1 2.6 1.3-5.7L2.8 7.8l5.8-.5L11 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Review &amp; customer reply management</h3>
+        <p class="svc-what"><b>What you get:</b> A simple system that writes a warm, professional reply to every Google or TripAdvisor review you receive. Good reviews thanked, tricky ones handled with care. You never stare at a blank reply box again.</p>
+        <div class="svc-price"><span class="num">£75</span><span class="per">one-off setup</span></div>
+        <a href="#contact" class="svc-link">Book a free chat →</a>
+      </div>
+
+      <!-- SERVICE 2 -->
+      <div class="svc reveal">
+        <div class="svc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 9h18M8 14h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Social media posts, written for you</h3>
+        <p class="svc-what"><b>What you get:</b> 30 ready-to-post updates each month — written, captioned, and handed to you to copy and paste whenever you like. No more wondering what to post.</p>
+        <div class="svc-price"><span class="num">£75</span><span class="per">per month</span></div>
+        <a href="#contact" class="svc-link">Book a free chat →</a>
+      </div>
+
+      <!-- SERVICE 3 — feature -->
+      <div class="svc feature reveal">
+        <span class="badge-pop">Most popular</span>
+        <div class="svc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0z" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Social media, fully handled</h3>
+        <p class="svc-what"><b>What you get:</b> Everything in the writing package — but I post it, schedule it, and keep an eye on how it's doing. You do nothing at all. Just watch your page stay active and growing.</p>
+        <div class="svc-price"><span class="num">£150</span><span class="per">per month</span></div>
+        <a href="#contact" class="svc-link">Book a free chat →</a>
+      </div>
+
+      <!-- SERVICE 4 -->
+      <div class="svc reveal">
+        <div class="svc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+        </div>
+        <h3>Done-for-you AI setup</h3>
+        <p class="svc-what"><b>What you get:</b> I find the one job eating up most of your week, build an AI tool to handle it, and show you how to use it. One visit, and it keeps working for you long after I've left.</p>
+        <div class="svc-price"><span class="num">£150</span><span class="per">one-off</span></div>
+        <a href="#contact" class="svc-link">Book a free chat →</a>
+      </div>
+
+      <!-- SERVICE 5 -->
+      <div class="svc reveal" style="grid-column:1/-1">
+        <div class="svc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 5h18v11H3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 21h8M12 16v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>AI workshop — I teach you and your team</h3>
+        <p class="svc-what"><b>What you get:</b> A relaxed 90-minute session at your business where I show you and your staff how to use AI for your specific day-to-day — in plain English, with real examples from your world. You'll be using it confidently by the time I leave.</p>
+        <div class="svc-price"><span class="num">£75</span><span class="per">90-minute session</span></div>
+        <a href="#contact" class="svc-link">Book a free chat →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="steps reveal">
+  <div class="wrap">
+    <div class="sec-head center">
+      <div class="kicker">How it works</div>
+      <h2>Simple, and no pressure</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>A free 20-minute chat</h3>
+        <p>We have a friendly conversation about your business and where your time's going. No obligation, no jargon.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>I come to you</h3>
+        <p>In person, at your business, at a time that suits you. You don't have to go anywhere or learn anything first.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>You see results there and then</h3>
+        <p>Whether it's a workshop or a setup, you'll leave the session with something that actually works.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Ongoing help, if you want it</h3>
+        <p>Optional monthly packages to keep things ticking along. Only if it's genuinely useful to you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHY ===================== -->
+<section id="about">
+  <div class="wrap why-grid">
+    <div class="reveal">
+      <div class="kicker" style="color:var(--teal);font-weight:600;font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px">Why work with me</div>
+      <h2>A real person, not a faceless agency</h2>
+      <p style="margin-top:16px">I'm James, a student studying engineering and AI at the University of Nottingham. I started Cavan AI because I kept seeing big tech companies get all the benefits of AI, while the local businesses I grew up around got none of it.</p>
+      <p style="margin-top:14px">I'm not here to baffle you with buzzwords or sell you something you don't need. I work with a small handful of businesses at a time, so you get my proper attention — and an honest answer about whether I can actually help.</p>
+    </div>
+    <div class="reveal">
+      <ul class="why-points">
+        <li><span class="tick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Plain English, always.</b> <span>If I ever use a word you don't recognise, I've done my job wrong.</span></div></li>
+        <li><span class="tick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Local and in person.</b> <span>I come to you and sit down with you — none of this faceless online stuff.</span></div></li>
+        <li><span class="tick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Honest advice.</b> <span>If AI won't help your business, I'll tell you straight — and I won't charge you to find out.</span></div></li>
+        <li><span class="tick"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Backed by a guarantee.</b> <span>Not happy within 7 days? You get your money back, simple as that.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GUARANTEE ===================== -->
+<section class="guarantee reveal">
+  <div class="wrap guarantee-inner">
+    <div class="seal">
+      <svg width="38" height="38" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V5l-8-3z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h2>My 7-day promise to you</h2>
+    <p>If you're not completely happy within 7 days, I'll refund you in full. No awkward conversations, no small print, no hard feelings.</p>
+    <p class="small">I'd rather you trusted me than felt stuck with me. That's the whole point.</p>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <div class="kicker">Kind words</div>
+      <h2>What people are saying</h2>
+      <p>I'm just getting started and working with my very first local businesses right now. Real reviews from real owners will live here soon.</p>
+    </div>
+    <div class="tg">
+      <div class="t-card reveal">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">Your business could be the first review here. Be one of my founding clients and tell people how it went.</p>
+        <span class="t-soon">✦ Coming soon</span>
+      </div>
+      <div class="t-card reveal">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">I'd rather earn a handful of honest reviews from happy local owners than fill this page with anything made up.</p>
+        <span class="t-soon">✦ Coming soon</span>
+      </div>
+      <div class="t-card reveal">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-quote">Want to see what I can do before anyone else has? The free chat costs you nothing but 20 minutes.</p>
+        <span class="t-soon">✦ Coming soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="contact" id="contact">
+  <div class="wrap contact-inner">
+    <div class="reveal">
+      <div class="kicker" style="color:var(--teal);font-weight:600;font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:12px">Get in touch</div>
+      <h2>Let's have a quick chat</h2>
+      <p class="lead">Prefer to just talk it through? Call or text me directly — I'm happy to answer any question, even the ones you think are silly. There's no pressure and no obligation.</p>
+    </div>
+    <div class="contact-methods reveal">
+      <a class="cm" href="tel:07484257125">
+        <span class="cm-ic phone"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6.6 3h3l1.5 4-2 1.4a11 11 0 0 0 4.5 4.5l1.4-2 4 1.5v3a2 2 0 0 1-2.2 2A16 16 0 0 1 4.6 5.2 2 2 0 0 1 6.6 3z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+        <span><span class="cm-label">Call or text me</span><span class="cm-value">07484 257125</span></span>
+      </a>
+      <a class="cm" href="https://wa.me/447484257125" target="_blank" rel="noopener">
+        <span class="cm-ic wa"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.5 8.5c0 3.5 3.5 7 7 7 .8 0 1.3-.8 1-1.5l-.4-.8a.8.8 0 0 0-1-.4l-1 .4a5 5 0 0 1-2.7-2.7l.4-1a.8.8 0 0 0-.4-1l-.8-.4c-.7-.3-1.5.2-1.5 1z" fill="#fff"/></svg></span>
+        <span><span class="cm-label">Message me on WhatsApp</span><span class="cm-value">Tap to open WhatsApp</span></span>
+      </a>
+      <a class="cm" href="mailto:cavanai.business@gmail.com">
+        <span class="cm-ic mail"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#fff" stroke-width="1.6"/><path d="M3.5 6.5L12 13l8.5-6.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+        <span><span class="cm-label">Or drop me an email</span><span class="cm-value">cavanai.business@gmail.com</span></span>
+      </a>
+    </div>
+    <p class="contact-foot">Not a phone person? Send an email and I'll reply within 24 hours — usually much sooner.</p>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="logo"><span class="spark">✦</span> Cavan<b>AI</b></div>
+    <p class="f-line">Making AI work for real businesses.</p>
+    <div class="f-contact">
+      <a href="tel:07484257125">07484 257125</a>
+      <a href="mailto:cavanai.business@gmail.com">cavanai.business@gmail.com</a>
+      <a href="https://wa.me/447484257125" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <p class="f-small">© <span id="yr"></span> Cavan AI · James Cavan</p>
+  </div>
+</footer>
+
+<script>
+  // ---------- nav shadow on scroll ----------
+  var nav=document.getElementById('nav');
+  window.addEventListener('scroll',function(){
+    nav.classList.toggle('scrolled',window.scrollY>10);
+  });
+
+  // ---------- year ----------
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  // ---------- typewriter ----------
+  (function(){
+    var phrases=[
+      "I'll reply to your reviews.",
+      "I'll write your social posts.",
+      "I'll answer your customer emails.",
+      "I'll handle the repetitive stuff.",
+      "I'll give you your time back."
+    ];
+    var el=document.getElementById('type');
+    if(!el)return;
+    var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if(reduce){el.textContent=phrases[0];return;}
+    var p=0,c=0,deleting=false;
+    function tick(){
+      var word=phrases[p];
+      el.textContent=word.substring(0,c);
+      if(!deleting){
+        c++;
+        if(c>word.length){deleting=true;return setTimeout(tick,1500);}
+      }else{
+        c--;
+        if(c<0){deleting=false;c=0;p=(p+1)%phrases.length;return setTimeout(tick,250);}
+      }
+      setTimeout(tick,deleting?38:65);
+    }
+    tick();
+  })();
+
+  // ---------- scroll reveal ----------
+  (function(){
+    var els=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in')});return;}
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+      });
+    },{threshold:0.12});
+    els.forEach(function(e){io.observe(e)});
+  })();
+</script>
+</body>
+</html>
